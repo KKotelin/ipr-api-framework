@@ -36,7 +36,7 @@ jobs:
           distribution: 'temurin'
       - run: mvn clean test
       - run: mvn allure:report
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v2
         with:
           name: allure-api-report
           path: test-api/target/site/allure-maven-plugin

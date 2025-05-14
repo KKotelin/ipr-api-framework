@@ -1,0 +1,47 @@
+stages:
+  - test
+
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2"
+
+# ==== TEMPLATE FOR UI TESTS ====
+.ui_tests_template: &ui_tests_template
+  stage: test
+  image: maven:3.9.4-eclipse-temurin-21
+  script:
+    - cd test-ui
+    - mvn clean test -Dbrowser=$BROWSER -Dheadless=$HEADLESS
+    - mvn allure:report
+  artifacts:
+    when: always
+    paths:
+      - test-ui/target/site/allure-maven-plugin
+  when: manual
+
+# ==== UI TESTS on Chrome ====
+ui_tests_chrome:
+  <<: *ui_tests_template
+  variables:
+    BROWSER: chrome
+    HEADLESS: true
+
+# ==== UI TESTS on Firefox ====
+ui_tests_firefox:
+  <<: *ui_tests_template
+  variables:
+    BROWSER: firefox
+    HEADLESS: true
+
+# ==== API TESTS ====
+api_tests:
+  stage: test
+  image: maven:3.9.4-eclipse-temurin-21
+  script:
+    - cd test-api
+    - mvn clean test
+    - mvn allure:report
+  artifacts:
+    when: always
+    paths:
+      - test-api/target/site/allure-maven-plugin
+  when: manual

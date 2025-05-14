@@ -19,16 +19,22 @@ release.properties
 *.iws
 out/
 
-# === VSCode (если вдруг) ===
+# === VSCode ===
 .vscode/
 
-# === Allure Reports ===
+# === Build / JUnit / Gradle reports ===
+**/build/
+**/reports/
+**/test-output/
+
+# === Allure ===
 allure-results/
 allure-report/
+**/target/site/allure-maven-plugin/
 
-# === OS ===
+# === System files ===
 .DS_Store
 Thumbs.db
 
-# === Environment / config ===
+# === Environment / configs ===
 .env

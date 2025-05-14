@@ -28,6 +28,7 @@ out/
 **/test-output/
 
 # === Allure ===
+.allure/
 allure-results/
 allure-report/
 **/target/site/allure-maven-plugin/

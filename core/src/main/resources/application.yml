@@ -1,0 +1,17 @@
+env:
+  apiConfig:
+    baseUrl: http://82.142.167.37:4879
+    timeout: 5000
+    username: admin@pflb.ru
+    password: admin
+  uiConfig:
+    baseUrl: http://82.142.167.37:4881
+    timeout: 5000
+    username: admin@pflb.ru
+    password: admin
+    browser: edge
+    headless: false
+db:
+  url: jdbc:postgresql://82.142.167.37:4832/pflb_trainingcenter
+  username: pflb-at-read
+  password: PflbQaTraining2354

@@ -23,7 +23,7 @@ on:
 jobs:
   api-tests:
     if: ${{ github.event.inputs.module == 'api' }}
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted]
     name: API Tests
     defaults:
       run:
@@ -43,7 +43,7 @@ jobs:
 
   ui-tests:
     if: ${{ github.event.inputs.module == 'ui' }}
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted]
     name: UI Tests
     defaults:
       run:

@@ -21,9 +21,7 @@ public class LoginPage {
     private final static String PASSWORD = env.getPassword();
 
     public LoginPage openLoginPage() {
-        Allure.step("Open login page", () -> {
-            open(env.getBaseUrl());
-        });
+        Allure.step("Open login page", () -> open(env.getBaseUrl()));
         return this;
     }
 

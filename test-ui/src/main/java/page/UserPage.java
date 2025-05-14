@@ -42,16 +42,12 @@ public class UserPage {
     }
 
     public UserPage fillAge(int age) {
-        Allure.step("Enter age: " + age, () -> {
-            AGE_FIELD.sendKeys(String.valueOf(age));
-        });
+        Allure.step("Enter age: " + age, () -> AGE_FIELD.sendKeys(String.valueOf(age)));
         return this;
     }
 
     public UserPage fillMoney(BigDecimal money) {
-        Allure.step("Enter balance: " + money, () -> {
-            MONEY_FIELD.sendKeys(String.valueOf(money));
-        });
+        Allure.step("Enter balance: " + money, () -> MONEY_FIELD.sendKeys(String.valueOf(money)));
         return this;
     }
 

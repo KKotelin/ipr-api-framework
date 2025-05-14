@@ -28,30 +28,22 @@ public class CarPage {
     }
 
     public CarPage fillEngineType(String engineType) {
-        Allure.step("Enter engine type: " + engineType, () -> {
-            ENGINE_TYPE_FIELD.sendKeys(engineType);
-        });
+        Allure.step("Enter engine type: " + engineType, () -> ENGINE_TYPE_FIELD.sendKeys(engineType));
         return this;
     }
 
     public CarPage fillMark(String mark) {
-        Allure.step("Enter mark: " + mark, () -> {
-            MARK_FIELD.sendKeys(mark);
-        });
+        Allure.step("Enter mark: " + mark, () -> MARK_FIELD.sendKeys(mark));
         return this;
     }
 
     public CarPage fillModel(String model) {
-        Allure.step("Enter model: " + model, () -> {
-            MODEL_FIELD.sendKeys(model);
-        });
+        Allure.step("Enter model: " + model, () -> MODEL_FIELD.sendKeys(model));
         return this;
     }
 
     public CarPage fillPrice(BigDecimal price) {
-        Allure.step("Enter price: " + price, () -> {
-            PRICE_FIELD.sendKeys(String.valueOf(price));
-        });
+        Allure.step("Enter price: " + price, () -> PRICE_FIELD.sendKeys(String.valueOf(price)));
         return this;
     }
 

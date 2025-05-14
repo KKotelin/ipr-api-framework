@@ -1,0 +1,62 @@
+name: Manual UI/API Test Runner
+
+on:
+  workflow_dispatch:
+    inputs:
+      module:
+        description: 'Select module to test'
+        required: true
+        default: 'ui'
+        type: choice
+        options:
+          - ui
+          - api
+      browser:
+        description: 'Select browser (for UI tests)'
+        required: false
+        default: 'chrome'
+        type: choice
+        options:
+          - chrome
+          - edge
+
+jobs:
+  api-tests:
+    if: ${{ github.event.inputs.module == 'api' }}
+    runs-on: ubuntu-latest
+    name: API Tests
+    defaults:
+      run:
+        working-directory: test-api
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+      - run: mvn clean test
+      - run: mvn allure:report
+      - uses: actions/upload-artifact@v3
+        with:
+          name: allure-api-report
+          path: test-api/target/site/allure-maven-plugin
+
+  ui-tests:
+    if: ${{ github.event.inputs.module == 'ui' }}
+    runs-on: ubuntu-latest
+    name: UI Tests
+    defaults:
+      run:
+        working-directory: test-ui
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+      - run: mvn clean test -Dbrowser=${{ github.event.inputs.browser }} -Dheadless=true
+      - run: mvn allure:report
+      - uses: actions/upload-artifact@v3
+        with:
+          name: allure-ui-report-${{ github.event.inputs.browser }}
+          path: test-ui/target/site/allure-maven-plugin

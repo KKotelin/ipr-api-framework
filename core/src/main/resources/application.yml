@@ -9,7 +9,7 @@ env:
     timeout: 5000
     username: admin@pflb.ru
     password: admin
-    browser: edge
+    browser: chrome
     headless: false
 db:
   url: jdbc:postgresql://82.142.167.37:4832/pflb_trainingcenter

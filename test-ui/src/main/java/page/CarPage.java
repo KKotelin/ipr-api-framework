@@ -22,41 +22,41 @@ public class CarPage {
     private static final SelenideElement NEW_ID_FIELD = $x("//*[@id=\"root\"]/div/section/div/div/button[3]");
 
     public void isPageOpen() {
-        Allure.step("Проверка открытия страницы создания автомобиля", () -> {
+        Allure.step("Verify that car creation page is open", () -> {
             PUSH_TO_API_BUTTON.shouldBe(visible);
         });
     }
 
     public CarPage fillEngineType(String engineType) {
-        Allure.step("Ввод типа двигателя: " + engineType, () -> {
+        Allure.step("Enter engine type: " + engineType, () -> {
             ENGINE_TYPE_FIELD.sendKeys(engineType);
         });
         return this;
     }
 
     public CarPage fillMark(String mark) {
-        Allure.step("Ввод марки автомобиля: " + mark, () -> {
+        Allure.step("Enter mark: " + mark, () -> {
             MARK_FIELD.sendKeys(mark);
         });
         return this;
     }
 
     public CarPage fillModel(String model) {
-        Allure.step("Ввод модели автомобиля: " + model, () -> {
+        Allure.step("Enter model: " + model, () -> {
             MODEL_FIELD.sendKeys(model);
         });
         return this;
     }
 
     public CarPage fillPrice(BigDecimal price) {
-        Allure.step("Ввод цены автомобиля: " + price, () -> {
+        Allure.step("Enter price: " + price, () -> {
             PRICE_FIELD.sendKeys(String.valueOf(price));
         });
         return this;
     }
 
     public CarPage clickPushButton() {
-        Allure.step("Нажатие кнопки PUSH (создание машины)", () -> {
+        Allure.step("Click PUSH button (create car)", () -> {
             PUSH_TO_API_BUTTON.shouldBe(visible);
             PUSH_TO_API_BUTTON.click();
         });
@@ -64,13 +64,13 @@ public class CarPage {
     }
 
     public void isStatusMessageCorrect(String expectedMessage) {
-        Allure.step("Проверка сообщения статуса: ожидается '" + expectedMessage + "'", () -> {
+        Allure.step("Check status message: expected '" + expectedMessage + "'", () -> {
             STATUS_FIELD.shouldHave(text(expectedMessage), Duration.ofSeconds(10));
         });
     }
 
     public String getNewCarId() {
-        return Allure.step("Получение ID созданного автомобиля", () -> {
+        return Allure.step("Get ID of created car", () -> {
             NEW_ID_FIELD.shouldBe(visible);
             return NEW_ID_FIELD.getText().replaceAll("^.*?(\\d+)$", "$1");
         });

@@ -22,55 +22,55 @@ public class HousePage {
     private final static SelenideElement NEW_ID_FIELD = $x("//button[@class='newId btn btn-secondary']");
 
     public void isPageOpen() {
-        Allure.step("Проверка открытия страницы создания дома", () -> {
+        Allure.step("Verify that house creation page is open", () -> {
             PUSH_TO_API_BUTTON.shouldBe(visible);
         });
     }
 
     public HousePage fillFloors(int floors) {
-        Allure.step("Ввод количества этажей: " + floors, () -> {
+        Allure.step("Enter number of floors: " + floors, () -> {
             FLOORS_FIELD.setValue(String.valueOf(floors));
         });
         return this;
     }
 
     public HousePage fillPrice(BigDecimal price) {
-        Allure.step("Ввод цены дома: " + price, () -> {
+        Allure.step("Enter house price: " + price, () -> {
             PRICE_FIELD.setValue(price.toPlainString());
         });
         return this;
     }
 
     public HousePage fillWarmCoveredPlaces(int count) {
-        Allure.step("Парковка: тепло и крыто — " + count + " мест", () -> {
+        Allure.step("Enter warm and covered parking spaces: " + count, () -> {
             WARM_AND_COVERED_FIELD.setValue(String.valueOf(count));
         });
         return this;
     }
 
     public HousePage fillWarmUncoveredPlaces(int count) {
-        Allure.step("Парковка: тепло и без крыши — " + count + " мест", () -> {
+        Allure.step("Enter warm and uncovered parking spaces: " + count, () -> {
             WARM_AND_NO_COVERED_FIELD.setValue(String.valueOf(count));
         });
         return this;
     }
 
     public HousePage fillColdCoveredPlaces(int count) {
-        Allure.step("Парковка: холодно и крыто — " + count + " мест", () -> {
+        Allure.step("Enter cold and covered parking spaces: " + count, () -> {
             NO_WARM_AND_COVERED_FIELD.setValue(String.valueOf(count));
         });
         return this;
     }
 
     public HousePage fillColdUncoveredPlaces(int count) {
-        Allure.step("Парковка: холодно и без крыши — " + count + " мест", () -> {
+        Allure.step("Enter cold and uncovered parking spaces: " + count, () -> {
             NO_WARM_AND_NO_COVERED_FIELD.setValue(String.valueOf(count));
         });
         return this;
     }
 
     public HousePage clickPushButton() {
-        Allure.step("Нажатие кнопки PUSH (создание дома)", () -> {
+        Allure.step("Click PUSH button to create house", () -> {
             PUSH_TO_API_BUTTON.shouldBe(visible);
             PUSH_TO_API_BUTTON.click();
         });
@@ -78,13 +78,13 @@ public class HousePage {
     }
 
     public void isStatusMessageCorrect(String expectedMessage) {
-        Allure.step("Проверка сообщения статуса: ожидается '" + expectedMessage + "'", () -> {
+        Allure.step("Check status message: expected '" + expectedMessage + "'", () -> {
             STATUS_FIELD.shouldHave(text(expectedMessage), Duration.ofSeconds(10));
         });
     }
 
     public String getNewHouseId() {
-        return Allure.step("Получение ID созданного дома", () -> {
+        return Allure.step("Get ID of the created house", () -> {
             NEW_ID_FIELD.shouldBe(visible);
             return NEW_ID_FIELD.getText().replaceAll("^.*?(\\d+)$", "$1");
         });

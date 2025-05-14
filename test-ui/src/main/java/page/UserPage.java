@@ -22,41 +22,41 @@ public class UserPage {
     private final static SelenideElement NEW_ID_FIELD = $x("//button[contains(@class,'newId')]");
 
     public void isPageOpen() {
-        Allure.step("Проверка открытия страницы пользователя", () -> {
+        Allure.step("Verify that user creation page is open", () -> {
             PUSH_BUTTON.shouldBe(visible);
         });
     }
 
     public UserPage fillFirstName(String firstName) {
-        Allure.step("Ввод имени: " + firstName, () -> {
+        Allure.step("Enter first name: " + firstName, () -> {
             FIRST_NAME_FIELD.setValue(firstName);
         });
         return this;
     }
 
     public UserPage fillSecondName(String secondName) {
-        Allure.step("Ввод фамилии: " + secondName, () -> {
+        Allure.step("Enter last name: " + secondName, () -> {
             SECOND_NAME_FIELD.setValue(secondName);
         });
         return this;
     }
 
     public UserPage fillAge(int age) {
-        Allure.step("Ввод возраста: " + age, () -> {
+        Allure.step("Enter age: " + age, () -> {
             AGE_FIELD.sendKeys(String.valueOf(age));
         });
         return this;
     }
 
     public UserPage fillMoney(BigDecimal money) {
-        Allure.step("Ввод баланса: " + money, () -> {
+        Allure.step("Enter balance: " + money, () -> {
             MONEY_FIELD.sendKeys(String.valueOf(money));
         });
         return this;
     }
 
     public UserPage selectSex(boolean isMale) {
-        Allure.step("Выбор пола: " + (isMale ? "MALE" : "FEMALE"), () -> {
+        Allure.step("Select gender: " + (isMale ? "MALE" : "FEMALE"), () -> {
             if (isMale) {
                 SEX_MALE_INPUT.click();
                 SEX_MALE_INPUT.shouldBe(selected);
@@ -69,7 +69,7 @@ public class UserPage {
     }
 
     public UserPage clickPushButton() {
-        Allure.step("Нажатие кнопки PUSH", () -> {
+        Allure.step("Click PUSH button to create user", () -> {
             PUSH_BUTTON.shouldBe(visible);
             PUSH_BUTTON.click();
         });
@@ -77,13 +77,13 @@ public class UserPage {
     }
 
     public void isStatusMessageCorrect(String expectedMessage) {
-        Allure.step("Проверка сообщения статуса: ожидается '" + expectedMessage + "'", () -> {
+        Allure.step("Check status message: expected '" + expectedMessage + "'", () -> {
             STATUS_FIELD.shouldHave(text(expectedMessage), Duration.ofSeconds(10));
         });
     }
 
     public String getNewUserId() {
-        return Allure.step("Получение ID нового пользователя", () -> {
+        return Allure.step("Get ID of the created user", () -> {
             NEW_ID_FIELD.shouldBe(visible);
             return NEW_ID_FIELD.getText().replaceAll("^.*?(\\d+)$", "$1");
         });

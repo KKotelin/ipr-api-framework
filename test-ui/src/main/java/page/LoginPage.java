@@ -15,20 +15,20 @@ public class LoginPage {
 
     private final static SelenideElement USERNAME_FIELD = $x("//input[@name='email']");
     private final static SelenideElement PASSWORD_FIELD = $x("//input[@name='password']");
-    private final static SelenideElement LOGIN_BUTTON = $x("//button[contains(text(),\" GO\")]");
-    private final static SelenideElement LOGOUT_BUTTON = $x("//button[contains(text(),\" LOGOUT\")]");
+    private final static SelenideElement LOGIN_BUTTON = $x("//button[contains(text(),\" GO\")] ");
+    private final static SelenideElement LOGOUT_BUTTON = $x("//button[contains(text(),\" LOGOUT\")] ");
     private final static String USERNAME = env.getUsername();
     private final static String PASSWORD = env.getPassword();
 
     public LoginPage openLoginPage() {
-        Allure.step("Открываем страницу логина", () -> {
+        Allure.step("Open login page", () -> {
             open(env.getBaseUrl());
         });
         return this;
     }
 
     public LoginPage isPageOpen() {
-        Allure.step("Проверка открытия страницы", () -> {
+        Allure.step("Verify that login page is open", () -> {
             LOGOUT_BUTTON.shouldBe(visible);
         });
         return this;
@@ -39,7 +39,7 @@ public class LoginPage {
     }
 
     public LoginPage login(String username, String password) {
-        Allure.step("Логинимся с логином: " + username + " и паролем: " + password, () -> {
+        Allure.step("Log in with username: " + username + " and password: " + password, () -> {
             USERNAME_FIELD.shouldBe(visible).setValue(username);
             PASSWORD_FIELD.shouldBe(visible).setValue(password);
             LOGIN_BUTTON.shouldBe(enabled).click();
@@ -48,7 +48,7 @@ public class LoginPage {
     }
 
     public void confirmAlert() {
-        Allure.step("Подтверждаем alert", () -> {
+        Allure.step("Confirm browser alert", () -> {
             Alert alert = switchTo().alert();
             alert.accept();
         });
